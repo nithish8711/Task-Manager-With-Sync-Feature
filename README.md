@@ -27,32 +27,36 @@ The system supports **task CRUD operations**, **sync queue management**, and **s
 
 com.manager.task_manager
 ├── Controllers/
-│ ├── TaskController.java
-│ ├── SyncController.java
-│ └── HealthController.java
+│   ├── TaskController.java
+│   ├── SyncController.java
+│   └── HealthController.java
+│
 ├── DTO/
-│ ├── TaskDTO.java
-│ ├── SyncBatchItemDTO.java
-│ ├── SyncProcessedItemDTO.java
-│ ├── SyncRequestDTO.java
-│ ├── SyncResponseDTO.java
-│ └── SyncStatusDTO.java
+│   ├── TaskDTO.java
+│   ├── SyncBatchItemDTO.java
+│   ├── SyncProcessedItemDTO.java
+│   ├── SyncRequestDTO.java
+│   ├── SyncResponseDTO.java
+│   └── SyncStatusDTO.java
+│
 ├── Model/
-│ ├── Task.java
-│ ├── SyncQueue.java
-│ └── SyncOperation.java
+│   ├── Task.java
+│   ├── SyncQueue.java
+│   └── SyncOperation.java
+│
 ├── Repository/
-│ ├── TaskRepository.java
-│ └── SyncQueueRepository.java
+│   ├── TaskRepository.java
+│   └── SyncQueueRepository.java
+│
 ├── Services/
-│ ├── TaskService.java
-│ └── SyncService.java
+│   ├── TaskService.java
+│   └── SyncService.java
+│
 ├── Security/
-│ └── SecurityConfig.java
+│   └── SecurityConfig.java
+│
 └── TaskManagerApplication.java
 
-yaml
-Copy code
 
 ---
 
@@ -95,6 +99,7 @@ Secure endpoints using Basic Authentication
 Here’s a visual representation of how data moves through the system:
 ![Uploading image.png…]()
 
+---
 
 🧩 API Endpoints & Postman Testing
 🧱 1. Health Check
@@ -109,6 +114,7 @@ Copy code
   "status": "ok",
   "timestamp": "2025-10-30T12:45:00"
 }
+
 📝 2. Create a Task
 POST /api/tasks
 🔐 Requires Basic Auth
@@ -134,6 +140,7 @@ Copy code
   "syncStatus": "PENDING",
   "updatedAt": "2025-10-30T12:46:00"
 }
+
 📋 3. Get All Tasks
 GET /api/tasks
 🔐 Requires Basic Auth
@@ -151,6 +158,7 @@ Copy code
     "deleted": false
   }
 ]
+
 🔍 4. Get Task by ID
 GET /api/tasks/{id}
 🔐 Requires Basic Auth
@@ -165,6 +173,7 @@ Copy code
   "description": "Submit by Friday",
   "completed": false
 }
+
 ✏️ 5. Update Task
 PUT /api/tasks/{id}
 🔐 Requires Basic Auth
@@ -188,6 +197,7 @@ Copy code
   "description": "Extended deadline",
   "completed": true
 }
+
 🗑️ 6. Delete Task
 DELETE /api/tasks/{id}
 🔐 Requires Basic Auth
@@ -210,6 +220,7 @@ Copy code
   "failed": 0,
   "timestamp": "2025-10-30T12:48:30"
 }
+
 📦 8. Batch Sync
 POST /api/sync/batch
 🔐 Requires Basic Auth
@@ -251,6 +262,7 @@ Copy code
     }
   ]
 }
+
 📊 9. Sync Status
 GET /api/sync/status
 🔐 Requires Basic Auth
@@ -265,6 +277,7 @@ Copy code
   "online": true,
   "syncQueueSize": 2
 }
+
 🧱 Architecture Summary
 Layer	Purpose
 Model Layer	Defines entities (Task, SyncQueue, SyncOperation).
