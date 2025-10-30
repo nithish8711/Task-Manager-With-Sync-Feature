@@ -6,7 +6,7 @@ The system supports **task CRUD operations**, **sync queue management**, and **s
 ---
 
 ## 📽️ Project Demo
-🎥 [Watch Demo Video](https://drive.google.com/your-demo-video-link)
+🎥 [Watch Demo Video](https://drive.google.com/file/d/1vTvatgpswi75IABbTA2F9NNuNPXFPFjM/view?usp=sharing)
 
 ---
 
@@ -23,67 +23,29 @@ The system supports **task CRUD operations**, **sync queue management**, and **s
 
 ---
 
-## 📁 Project Structure
-
-com.manager.task_manager
-├── Controllers/
-│   ├── TaskController.java
-│   ├── SyncController.java
-│   └── HealthController.java
-│
-├── DTO/
-│   ├── TaskDTO.java
-│   ├── SyncBatchItemDTO.java
-│   ├── SyncProcessedItemDTO.java
-│   ├── SyncRequestDTO.java
-│   ├── SyncResponseDTO.java
-│   └── SyncStatusDTO.java
-│
-├── Model/
-│   ├── Task.java
-│   ├── SyncQueue.java
-│   └── SyncOperation.java
-│
-├── Repository/
-│   ├── TaskRepository.java
-│   └── SyncQueueRepository.java
-│
-├── Services/
-│   ├── TaskService.java
-│   └── SyncService.java
-│
-├── Security/
-│   └── SecurityConfig.java
-│
-└── TaskManagerApplication.java
-
-
----
-
 ## 🚀 How to Run
 
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/your-username/task-manager.git
 cd task-manager
+
 2️⃣ Build the Project
-bash
-Copy code
 mvn clean install
+
 3️⃣ Run the Application
 bash
 Copy code
 mvn spring-boot:run
 Server starts at:
 
-arduino
-Copy code
-http://localhost:3000
+http://localhost:8080
 4️⃣ Login Credentials (Basic Auth)
 makefile
 Copy code
 Username: admin
 Password: admin123
+
 🧠 System Overview
 This application allows clients (like mobile or web apps) to:
 
@@ -97,7 +59,8 @@ Secure endpoints using Basic Authentication
 
 🔁 Data Flow
 Here’s a visual representation of how data moves through the system:
-![Uploading image.png…]()
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/ff782aeb-d2a4-4d81-94ab-f852f56f9180" />
+
 
 ---
 
@@ -122,7 +85,6 @@ POST /api/tasks
 Request Body:
 
 json
-Copy code
 {
   "title": "Finish project report",
   "description": "Submit by Friday"
@@ -130,7 +92,6 @@ Copy code
 Response:
 
 json
-Copy code
 {
   "id": "2b4c3c0d-7a21-4de1-b12d-8c92f4b298df",
   "title": "Finish project report",
@@ -148,7 +109,6 @@ GET /api/tasks
 Response:
 
 json
-Copy code
 [
   {
     "id": "2b4c3c0d-7a21-4de1-b12d-8c92f4b298df",
@@ -166,7 +126,6 @@ GET /api/tasks/{id}
 Response:
 
 json
-Copy code
 {
   "id": "2b4c3c0d-7a21-4de1-b12d-8c92f4b298df",
   "title": "Finish project report",
@@ -181,7 +140,6 @@ PUT /api/tasks/{id}
 Request:
 
 json
-Copy code
 {
   "title": "Finish report (updated)",
   "description": "Extended deadline",
@@ -190,7 +148,6 @@ Copy code
 Response:
 
 json
-Copy code
 {
   "id": "2b4c3c0d-7a21-4de1-b12d-8c92f4b298df",
   "title": "Finish report (updated)",
@@ -204,8 +161,6 @@ DELETE /api/tasks/{id}
 
 Response:
 
-css
-Copy code
 204 No Content
 🔄 7. Trigger Sync (Manual)
 POST /api/sync
@@ -214,7 +169,6 @@ POST /api/sync
 Response:
 
 json
-Copy code
 {
   "processed": 5,
   "failed": 0,
@@ -228,7 +182,6 @@ POST /api/sync/batch
 Request:
 
 json
-Copy code
 {
   "items": [
     {
@@ -244,7 +197,6 @@ Copy code
 Response:
 
 json
-Copy code
 {
   "processedItems": [
     {
@@ -270,7 +222,6 @@ GET /api/sync/status
 Response:
 
 json
-Copy code
 {
   "pendingSyncCount": 2,
   "lastSyncTimestamp": "2025-10-30T12:51:00",
@@ -278,26 +229,9 @@ Copy code
   "syncQueueSize": 2
 }
 
-🧱 Architecture Summary
-Layer	Purpose
-Model Layer	Defines entities (Task, SyncQueue, SyncOperation).
-DTO Layer	Transfers structured data between client & server.
-Repository Layer	Handles persistence (via JPA Repositories).
-Service Layer	Implements business logic (create, sync, update).
-Controller Layer	Defines REST endpoints for CRUD & Sync APIs.
-Security Layer	Uses Spring Security for Basic Auth protection.
-
 🔐 Security
 All APIs under /api/** are protected using HTTP Basic Auth.
 Only /api/health is public.
-
-⚖️ Trade-offs & Challenges
-Challenge	Decision / Trade-off
-SQLite for simplicity	Ideal for lightweight systems, not for large-scale concurrency
-Basic Auth	Simple to implement but not secure for production (replace with JWT/OAuth)
-SyncQueue handling	Introduced for offline task tracking
-Batch sync complexity	Balanced via SyncProcessedItemDTO response
-Hibernate SQLite dialect	Custom dialect (org.hibernate.community.dialect.SQLiteDialect) for compatibility
 
 📚 Future Enhancements
 JWT-based authentication
